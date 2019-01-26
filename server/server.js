@@ -55,6 +55,7 @@ require("./routes/devicetypeRoutes")(app);
 require("./routes/deviceRoutes")(app);
 require("./routes/userRoutes")(app);
 
+//app.use("./routes/userRoutes",app);
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true

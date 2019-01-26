@@ -6,7 +6,7 @@ var db=require("../models");
 
 module.exports = function(app) {
 
-    app.post('/new', (req, res) => {
+    app.post('/api/new', (req, res) => {
       User.create({
         username: req.body.username, email: req.body.email, password: req.body.password
       }).then(user => {
@@ -14,7 +14,19 @@ module.exports = function(app) {
         res.status(200).send({ regSucceess: true })
         }).catch(err => res.status(401).send({ regSucceess: false, errMsg: err }))
     });
-    app.post('/login', (req, res) => {
+
+    app.get('/api/logout', (req, res) => {
+      res.clearCookie('user_sid');
+      res.status(200).send({ inSession: false });
+    });
+    app.get('/api/user/alluserdata', (req, res, next) => {
+      console.log("entre");
+      User.findAll({attributes: ['email', 'username']}).then( data => {
+        res.status(200).json({ allUserData: data }) 
+      }).catch(err => next(err));
+    });
+    app.post('/api/login', (req, res) => {
+      console.log("entre");
       var username = req.body.username;
       var password = req.body.password;
       User.findOne({ where: { username: username } }).then(user => {
@@ -28,15 +40,6 @@ module.exports = function(app) {
           })
         }
       })
-    });
-    app.get('/logout', (req, res) => {
-      res.clearCookie('user_sid');
-      res.status(200).send({ inSession: false });
-    });
-    app.get('/alluserdata', (req, res, next) => {
-      User.findAll({attributes: ['email', 'username']}).then( data => {
-        res.status(200).json({ allUserData: data }) 
-      }).catch(err => next(err));
     });
     
 
