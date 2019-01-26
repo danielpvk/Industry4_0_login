@@ -18,33 +18,12 @@ var db = {};
     config.password,
     config
   );
+}
 
-}/*
-console.log("*******server");
-console.log(sequelize);
-
-fs.readdirSync(__dirname)
-  .filter(function(file) {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach(function(file) {
-    var model = sequelize.import(path.join(__dirname, file));
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach(function(modelName) {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
-*/
 db.sequelize = sequelize;
 db.Sequelize = Sequelize; 
-
-//db.DeviceTyp2e=require("../models/devicetype.js")(sequelize,Sequelize);
+db.DeviceType=require("../models/devicetype.js");
 db.Process=require("../models/example.js");
-//db.Device=require("../models/device.js")(sequelize,Sequelize);
+db.Device=require("../models/device.js");
 db.User=require("../models/user.js");
 module.exports = db;

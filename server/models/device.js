@@ -1,11 +1,32 @@
-module.exports = function(sequelize, DataTypes) {
-  var Device = sequelize.define("Devices", {
-    LectureP1: DataTypes.FLOAT,
-    LectureP2: DataTypes.FLOAT,
-    LectureP3: DataTypes.FLOAT,
-    LectureP4: DataTypes.FLOAT,
-    LectureP5: DataTypes.FLOAT,
-    NumSerie: DataTypes.INTEGER
+var fs = require("fs");
+var path = require("path");
+var Sequelize = require("sequelize");
+var basename = path.basename(module.filename);
+var env = process.env.NODE_ENV || "test";
+var config = require(__dirname + "/../config/config.json")[env];
+
+
+
+if (config.use_env_variable) {
+  var exampleSequelize = new Sequelize(process.env[config.use_env_variable]);
+} else {
+  var exampleSequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    config
+  );
+
+}
+
+var Device = exampleSequelize.define("Devices", {
+    LectureP1: Sequelize.FLOAT,
+    LectureP2: Sequelize.FLOAT,
+    LectureP3: Sequelize.FLOAT,
+    LectureP4: Sequelize.FLOAT,
+    LectureP5: Sequelize.FLOAT,
+    NumSerie: Sequelize.INTEGER
   });
-  return Device;
-};
+
+  module.exports = Device;
+
