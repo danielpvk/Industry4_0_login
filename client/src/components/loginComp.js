@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com";
+const apiEndpoint = "http://localhost:80";
 
 export default class LoginComp extends React.Component{
   constructor(props){
