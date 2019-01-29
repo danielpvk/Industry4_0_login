@@ -61,27 +61,27 @@ class App extends Component {
         <Col md="3" style={{backgroundColor: '#666666', height:"100vh"}}>
                <SidebarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName} />
         </Col>
-        <Col md="9"style={{backgroundColor: '#f1f1f1'}}>
-        
-        <NavbarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName}/>
+        <Col md="9"style={{backgroundColor: '#ffffff'}}>
+         
+               <NavbarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName}/>
+          
+    
+              <Route path={'/login/'} render={() => <LoginComp checkStatus={this.updateStatus} />} />
+              <Route path={"/logout"} render={() => <LogoutComp isLoggedUser={this.state.inSession} logoutUser={this.destroyUserSession} />} />
+              <Route path={"/signup"} component={SignupComp} />
 
 
 
-        <Route path={'/login/'} render={() => <LoginComp checkStatus={this.updateStatus} />} />
-        <Route path={"/logout"} render={() => <LogoutComp isLoggedUser={this.state.inSession} logoutUser={this.destroyUserSession} />} />
-        <Route path={"/signup"} component={SignupComp} />
 
-
-
-
-        {this.state.inSession ? (
-              <Route path={'/addProcess'} render={ () => <AddProcess/>}/>,
-            <Route path={"/"} render={()=> <Processes/>}/>
-            
-            ):
-            
-            (<Route path={"/"} render={()=> <HomeComp />}/>)   
-        }
+              {this.state.inSession ? (
+                    <Route path={'/addProcess'} render={ () => <AddProcess/>}/>,
+                  <Route path={"/"} render={()=> <Processes/>}/>
+                  
+                  ):
+                  
+                  (<Route path={"/"} render={()=> <HomeComp />}/>)   
+              }
+         
 
         
         </Col>
