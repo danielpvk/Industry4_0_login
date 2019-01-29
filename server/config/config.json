@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "root",
+    "username": "bootcamp",
     "password": "bootcamp",
     "database": "Industry4_0",
     "host": "localhost",
@@ -8,7 +8,7 @@
     "timezone": "-06:00"
   },
   "test": {
-    "username": "root",
+    "username": "bootcamp",
     "password": "bootcamp",
     "database": "Industry4_0",
     "host": "localhost",

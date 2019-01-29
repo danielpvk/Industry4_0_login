@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
-const apiEndpoint = "http://localhost:80";
+const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com";
 
 export default class SignupComp extends React.Component{
   constructor(){

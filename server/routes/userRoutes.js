@@ -7,6 +7,7 @@ var db=require("../models");
 module.exports = function(app) {
 
     app.post('/api/new', (req, res) => {
+	console.log("Llego new user: ",req.body);
       User.create({
         username: req.body.username, email: req.body.email, password: req.body.password
       }).then(user => {

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import StatsCard from "./statsCard";
 import Graph from "./graph";
 import axios from "axios";
-const apiEndpoint = "http://localhost/device/numserie/";
+const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com/device/numserie/";
 
 class View extends Component {
   state = { data: [], LectureP1: 0, LectureP2: 0, size: 0 };
