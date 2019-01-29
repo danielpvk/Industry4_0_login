@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import View from "./view";
 
 import axios from "axios";
-const apiEndpoint =
-  "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
+const apiEndpoint = "http://localhost/api/process/";
 
 class Processes extends Component {
   state = { Process_name: [], toView: false, onFocus: "", ProcessName: "" };

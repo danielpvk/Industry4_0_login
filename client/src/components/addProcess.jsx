@@ -8,7 +8,7 @@ class AddProcess extends Component {
     process: {
       Process_name: "",
       Process_Description: "",
-      NumSerie: "",
+      idDevice1: "",
       toProceses: false
     }
   };
@@ -64,7 +64,7 @@ class AddProcess extends Component {
             <div className="form-group">
               <label htmlFor="NumSerie">Serial Number</label>
               <input
-                name="NumSerie"
+                name="IdDevice1"
                 onChange={this.handleChange}
                 type="text"
                 className="form-control"

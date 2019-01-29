@@ -3,30 +3,25 @@ import React, { Component } from "react";
 import StatsCard from "./statsCard";
 import Graph from "./graph";
 import axios from "axios";
-const apiEndpoint =
-  "http://ec2-3-83-99-249.compute-1.amazonaws.com/device/numserie/";
+const apiEndpoint = "http://localhost/device/numserie/";
 
 class View extends Component {
   state = { data: [], LectureP1: 0, LectureP2: 0, size: 0 };
 
   async componentDidMount() {
     const result = await axios.get(apiEndpoint + this.props.NumSerie);
-    //console.log("ya estan los datos", result.data);
     console.log(result.data.length);
 
     this.setState({
       data: result.data,
       LectureP1: result.data[result.data.length - 1].LectureP1,
-      LectureP2: result.data[result.data.length - 1].LectureP1,
+      LectureP2: result.data[result.data.length - 1].LectureP2,
       size: result.data.length
     });
   }
 
   formatDate(d) {
-    //console.log(d);
-    var newStr = d.substring(0, d.length - 1);
-    const dateObject = new Date(newStr);
-    //console.log(dateObject);
+    const dateObject = new Date(d);
     return (
       dateObject.toLocaleDateString("es-MX") +
       " " +
@@ -45,10 +40,10 @@ class View extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm">
-              <StatsCard value={this.state.LectureP1} text={"Temperature"} />
+              <StatsCard value={this.state.LectureP1} text={"Temp (ºC)"} />
             </div>
             <div className="col-sm">
-              <StatsCard value={this.state.LectureP2} text={"Humidity"} />
+              <StatsCard value={this.state.LectureP2} text={"Humidity (%)"} />
             </div>
             <div className="col-sm">
               <StatsCard value={this.state.size} text={"DataPoints"} />
@@ -78,21 +73,24 @@ class View extends Component {
           </thead>
           <tbody>
             {//<Process processName="Proceso numero 1" />
-            this.state.data.map(p => (
-              <tr key={p.id}>
-                <td>
-                  <span style={{ fontStyle: "Italic" }}>
-                    {this.formatDate(p.createdAt)}
-                  </span>
-                </td>
-                <td>
-                  <span style={{ fontStyle: "Italic" }}>{p.LectureP1}</span>
-                </td>
-                <td>
-                  <span style={{ fontStyle: "Italic" }}>{p.LectureP2}</span>
-                </td>
-              </tr>
-            ))}
+            this.state.data
+              .slice(0)
+              .reverse()
+              .map(p => (
+                <tr key={p.id}>
+                  <td>
+                    <span style={{ fontStyle: "Italic" }}>
+                      {this.formatDate(p.createdAt)}
+                    </span>
+                  </td>
+                  <td>
+                    <span style={{ fontStyle: "Italic" }}>{p.LectureP1}</span>
+                  </td>
+                  <td>
+                    <span style={{ fontStyle: "Italic" }}>{p.LectureP2}</span>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
