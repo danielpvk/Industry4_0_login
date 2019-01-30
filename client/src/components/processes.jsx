@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {Route, Link } from "react-router-dom";
-import View from "./view";
 import AddProcess from "./addProcess";
+import View from "./view";
+
 
 import axios from "axios";
 const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
@@ -35,8 +36,7 @@ class Processes extends Component {
   render() {
     if (this.state.toView === true) {
       return (
-        
-        <View
+                <View
           NumSerie={this.state.onFocus}
           ProcessName={this.state.ProcessName}
         />
