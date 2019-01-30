@@ -1,3 +1,7 @@
+.dashboard {
+  background-color: #e9ecef;
+}
+
 .App {
   text-align: center;
 }
@@ -18,14 +22,12 @@
   color: white;
 }
 
-
 .App-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
 }
-
 
 .App-link {
   color: #61dafb;
@@ -40,7 +42,6 @@
   }
 }
 
-
 .App-title {
   font-size: 1.5em;
 }
@@ -50,6 +51,26 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.jumbotron {
+  margin-left: 15px;
+  margin-right: 18px;
+}
+
+.my-pretty-chart-container {
+  margin-left: 16px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.tabla {
+  background-color: #e9ecef;
+  margin: 16px;
 }

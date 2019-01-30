@@ -9,17 +9,31 @@ export class StatsCard extends Component {
 
   render() {
     return this.state.update ? (
-      <div className="card" style={{ width: "18rem" }}>
-        <div className="card-body">
-          <h5 className="card-title" style={{ textAlign: "center" }}>
-            Real Time {this.props.text}
-          </h5>
-          <p
-            className="mx-auto"
-            style={{ fontSize: "3rem", textAlign: "center" }}
+      <div className="card" style={{ width: "15rem" }}>
+        <div className="card-body dashboard">
+          <h5
+            className="card-title"
+            style={{ textAlign: "center", color: this.props.color }}
           >
-            {this.props.value}
-          </p>
+            {this.props.text}
+          </h5>
+
+          <div className="row">
+            <div className="col-sm">
+              <img src={this.props.image} />
+            </div>
+            <div className="col-sm">
+              <span
+                style={{
+                  fontSize: "3rem",
+                  textAlign: "right",
+                  color: this.props.color
+                }}
+              >
+                {this.props.value}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     ) : (
