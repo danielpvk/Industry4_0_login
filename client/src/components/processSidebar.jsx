@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 import axios from "axios";
-const apiEndpoint = "http://localhost/api/process/";
+const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
 
 export default class ProcessSidebar extends React.Component {
 
