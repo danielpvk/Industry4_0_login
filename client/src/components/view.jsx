@@ -9,7 +9,11 @@ class View extends Component {
   state = { data: [], LectureP1: 0, LectureP2: 0, size: 0 };
 
   async componentDidMount() {
-    const result = await axios.get(apiEndpoint + this.props.NumSerie);
+    const nSerie=localStorage.getItem("onFocus");
+  //  const result = await axios.get(apiEndpoint + this.props.NumSerie);
+  console.log("view mounted");
+  console.log("num serie"+nSerie);
+  const result = await axios.get(apiEndpoint + nSerie);
     console.log(result.data.length);
 
     this.setState({

@@ -12,8 +12,9 @@ import SignupComp from "./components/signupComp";
 import HomeComp from "./components/homeComp";
 import NavbarComp from "./components/navComp";
 import "bootstrap/dist/css/bootstrap.css";
-import { Container, Row, Col } from "reactstrap";
-import SidebarComp from "./components/sideBar";
+import { Container, Row, Col } from 'reactstrap';
+import SidebarComp from './components/sideBar';
+import View from './components/view';
 
 class App extends Component {
   //**********login adds */
@@ -84,7 +85,7 @@ class App extends Component {
                 )}
               />
               <Route path={"/signup"} component={SignupComp} />
-            </Switch>
+            
 
             {this.state.inSession ? (
               <Switch>
@@ -92,11 +93,28 @@ class App extends Component {
                 <Route path={"/"} render={() => <Processes />} />
                 <Route path={"/view"} render={() => <View />} />
               </Switch>
-            ) : (
-              <Route path={"/"} render={() => <HomeComp />} />
-            )}
-          </Col>
-        </Row>
+
+
+              {this.state.inSession ? 
+                
+                  (
+                    <Switch>
+                        <Route path={'/addProcess'} render={ () => <AddProcess/>}/>,
+                        <Route path={"/"} render={()=> <Processes/>}/>
+                        <Route path={'/view'} render={ () => <View/>}/>
+                    </Switch>
+                  
+                  ):
+                  
+                  (<Route path={"/"} render={()=> <HomeComp />}/>)   
+                  
+              }
+         
+
+        
+        </Col>
+
+      </Row>
       </Container>
     );
   }

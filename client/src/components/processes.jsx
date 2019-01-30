@@ -26,6 +26,8 @@ class Processes extends Component {
       onFocus: p.IdDevice1,
       ProcessName: p.Process_name
     });
+    localStorage.setItem("onFocus", p.IdDevice1);
+    localStorage.setItem("ProcessName", p.Process_name);
   };
 
   async componentDidMount() {
