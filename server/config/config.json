@@ -3,7 +3,7 @@
     "username": "root",
     "password": "root",
     "database": "Industry4_0",
-    "host": "localhost",
+    "host": "ec2-3-83-99-249.compute-1.amazonaws.com",
     "dialect": "mysql",
     "timezone": "-06:00"
   },
@@ -11,7 +11,7 @@
     "username": "root",
     "password": "root",
     "database": "Industry4_0",
-    "host": "localhost",
+    "host": "ec2-3-83-99-249.compute-1.amazonaws.com",
     "dialect": "mysql",
     "logging": false,
     "timezone": "-06:00"
