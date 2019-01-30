@@ -13,6 +13,7 @@ import NavbarComp from './components/navComp';
 import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col } from 'reactstrap';
 import SidebarComp from './components/sideBar';
+import View from './components/view';
 
 
 class App extends Component {
@@ -69,6 +70,7 @@ class App extends Component {
               <Route path={'/login/'} render={() => <LoginComp checkStatus={this.updateStatus} />} />
               <Route path={"/logout"} render={() => <LogoutComp isLoggedUser={this.state.inSession} logoutUser={this.destroyUserSession} />} />
               <Route path={"/signup"} component={SignupComp} />
+            
 
               </Switch>
 
@@ -77,9 +79,10 @@ class App extends Component {
                 
                   (
                     <Switch>
-                    <Route path={'/addProcess'} render={ () => <AddProcess/>}/>,
-                  <Route path={"/"} render={()=> <Processes/>}/>
-                  </Switch>
+                        <Route path={'/addProcess'} render={ () => <AddProcess/>}/>,
+                        <Route path={"/"} render={()=> <Processes/>}/>
+                        <Route path={'/view'} render={ () => <View/>}/>
+                    </Switch>
                   
                   ):
                   

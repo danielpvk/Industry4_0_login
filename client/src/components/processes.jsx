@@ -26,6 +26,8 @@ class Processes extends Component {
       onFocus: p.IdDevice1,
       ProcessName: p.Process_name
     });
+    localStorage.setItem("onFocus", p.IdDevice1);
+    localStorage.setItem("ProcessName", p.Process_name);
   };
 
   async componentDidMount() {
@@ -36,10 +38,7 @@ class Processes extends Component {
   render() {
     if (this.state.toView === true) {
       return (
-                <View
-          NumSerie={this.state.onFocus}
-          ProcessName={this.state.ProcessName}
-        />
+        <Route path={'/view'} render={ () => <View/>}/>
       );
     }
     if (this.state.Process_name.length === 0)
@@ -55,7 +54,7 @@ class Processes extends Component {
               <th>Process</th>
 
               <th>
-                 <Route path={'/addProcess'} render={ () => <AddProcess/>}/>,
+        
                 <Link
                   to="/addProcess"
                   style={{ marginLeft: 0, marginTop: 10 }}
