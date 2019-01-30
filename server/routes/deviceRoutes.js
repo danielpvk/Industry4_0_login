@@ -78,7 +78,7 @@ module.exports = function(app) {
               dbDevice.LectureP1 +
               " grados, y la humedad es de " +
               dbDevice.LectureP2 +
-              " porciento.  Quiero contarte un secreto: <amazon:effect name='whispered'>No soy un humano de verdad!,</amazon:effect>, ¿lo puedes creer?</speak> "
+              " porciento., <amazon:effect name='whispered'>Come frutas y verduras,</amazon:effect></speak>"
           }
         }
       };
