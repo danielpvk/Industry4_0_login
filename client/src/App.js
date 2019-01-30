@@ -33,7 +33,7 @@ class App extends Component {
   } 
 
   checkInSession = () => {
-    axios.get('http://localhost:80/api').then((res) => {
+    axios.get('http://ec2-3-83-99-249.compute-1.amazonaws.com/api').then((res) => {
       this.setState({ inSession: res.data.inSession });
       console.log(this.inSession);
     }).catch(err => console.log(err));
