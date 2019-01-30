@@ -65,21 +65,26 @@ class App extends Component {
          
                <NavbarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName}/>
           
-    
+              <Switch>
               <Route path={'/login/'} render={() => <LoginComp checkStatus={this.updateStatus} />} />
               <Route path={"/logout"} render={() => <LogoutComp isLoggedUser={this.state.inSession} logoutUser={this.destroyUserSession} />} />
               <Route path={"/signup"} component={SignupComp} />
 
+              </Switch>
 
 
-
-              {this.state.inSession ? (
+              {this.state.inSession ? 
+                
+                  (
+                    <Switch>
                     <Route path={'/addProcess'} render={ () => <AddProcess/>}/>,
                   <Route path={"/"} render={()=> <Processes/>}/>
+                  </Switch>
                   
                   ):
                   
                   (<Route path={"/"} render={()=> <HomeComp />}/>)   
+                  
               }
          
 
