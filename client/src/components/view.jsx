@@ -9,7 +9,11 @@ class View extends Component {
   state = { data: [], LectureP1: 0, LectureP2: 0, size: 0 };
 
   async componentDidMount() {
-    const result = await axios.get(apiEndpoint + this.props.NumSerie);
+    const nSerie=localStorage.getItem("onFocus");
+  //  const result = await axios.get(apiEndpoint + this.props.NumSerie);
+  console.log("view mounted");
+  console.log("num serie"+nSerie);
+  const result = await axios.get(apiEndpoint + nSerie);
     console.log(result.data.length);
 
     this.setState({
@@ -32,67 +36,95 @@ class View extends Component {
   render() {
     return (
       <div>
-        <h1>Detail</h1>
-        <h2>Process Name: {this.props.ProcessName}</h2>
-        <h2>Sensor Number: {this.props.NumSerie}</h2>
-        <hr />
+        <div className="jumbotron">
+          <h1 className="display-4" style={{ display: "inline" }}>
+            Process Name:
+          </h1>
+          <h1
+            className="display-6"
+            style={{ color: "red", display: "inline", paddingLeft: "20" }}
+          >
+            {this.props.ProcessName}
+          </h1>
+          <p className="lead">
+            This is the Industry 4.0 Process, this dashboard shows all the
+            sensors information for the process.
+          </p>
+
+          <h2>Sensor Serial Number: {this.props.NumSerie}</h2>
+        </div>
 
         <div className="container">
           <div className="row">
             <div className="col-sm">
-              <StatsCard value={this.state.LectureP1} text={"Temp (ºC)"} />
+              <StatsCard
+                value={this.state.LectureP1}
+                text={"Temp (ºC)"}
+                image={"./assets/icons/temp.jpg"}
+                color={"blue"}
+              />
             </div>
             <div className="col-sm">
-              <StatsCard value={this.state.LectureP2} text={"Humidity (%)"} />
+              <StatsCard
+                value={this.state.LectureP2}
+                text={"Humidity (%)"}
+                image={"./assets/icons/dew.jpg"}
+                color={"red"}
+              />
             </div>
             <div className="col-sm">
-              <StatsCard value={this.state.size} text={"DataPoints"} />
+              <StatsCard
+                value={this.state.size}
+                text={"DataPoints"}
+                image={"./assets/icons/points.jpg"}
+              />
             </div>
           </div>
         </div>
 
         <Graph data={this.state.data} />
+        <div className="tabla">
+          <h2 style={{ textAlign: "center" }}>Data</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Temperature (ºC)</th>
+                <th>Humidity (Relative%)</th>
 
-        <h2>Data</h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Temperature (ºC)</th>
-              <th>Humidity (Relative%)</th>
-
-              <th>
-                <button
-                  style={{ marginLeft: 0, marginTop: 10 }}
-                  className="btn btn-success btn-sm"
-                >
-                  Return to List
-                </button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {//<Process processName="Proceso numero 1" />
-            this.state.data
-              .slice(0)
-              .reverse()
-              .map(p => (
-                <tr key={p.id}>
-                  <td>
-                    <span style={{ fontStyle: "Italic" }}>
-                      {this.formatDate(p.createdAt)}
-                    </span>
-                  </td>
-                  <td>
-                    <span style={{ fontStyle: "Italic" }}>{p.LectureP1}</span>
-                  </td>
-                  <td>
-                    <span style={{ fontStyle: "Italic" }}>{p.LectureP2}</span>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+                <th>
+                  <button
+                    style={{ marginLeft: 0, marginTop: 10 }}
+                    className="btn btn-success btn-sm"
+                  >
+                    Return to List
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {//<Process processName="Proceso numero 1" />
+              this.state.data
+                .slice(0)
+                .reverse()
+                .map(p => (
+                  <tr key={p.id}>
+                    <td>
+                      <span style={{ fontStyle: "Italic" }}>
+                        {this.formatDate(p.createdAt)}
+                      </span>
+                    </td>
+                    <td>
+                      <span style={{ fontStyle: "Italic" }}>{p.LectureP1}</span>
+                    </td>
+                    <td>
+                      <span style={{ fontStyle: "Italic" }}>{p.LectureP2}</span>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
