@@ -60,7 +60,8 @@ export default class ProcessSidebar extends React.Component {
                   <td>
                   <Link
                     to={`/view/${p.IdDevice1}`}
-                    className="btn btn-primary btn-sm"
+                    style={{ marginLeft: 0, marginTop: 10, marginRight:10, width:'100%' , backgroundColor: '383838' }}
+                    className="btn btn-light btn-sm text-left"
                   >
                     <FaAtom />  {p.Process_name} 
                    </Link>

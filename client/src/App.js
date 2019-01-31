@@ -57,19 +57,30 @@ class App extends Component {
     return (
       <Container>
         <Row>
+          <Col md="3" style={{backgroundColor: "#888888", paddingLeft:"10px", borderBottom: '1px double lavender'  }}>
+        
+                <h4>Industry 4.0 <br></br>Workbench</h4> 
+            
+          </Col>
+          <Col md="9"style={{backgroundColor: '#ffffff',borderBottom: '1px double lavender'}}>
+           
+                <NavbarComp
+                  isLoggedIn={this.state.inSession}
+                  loggedUserName={this.state.loggedUserName}
+                />
+               
+          </Col>
+        </Row>
+
+        <Row >
           <Col md="3" style={{backgroundColor: '#666666', height:"100vh" }}>
             <SidebarComp
               isLoggedIn={this.state.inSession}
               loggedUserName={this.state.loggedUserName}
             />
           </Col>
-          <Col md="9"style={{backgroundColor: '#ffffff'}}>
-            <Row style={{backgroundColor:'#f6f6f6',marginBottom:"2px solid red"}}>
-            <NavbarComp
-              isLoggedIn={this.state.inSession}
-              loggedUserName={this.state.loggedUserName}
-            />
-            </Row>
+          <Col md="9"style={{backgroundColor: '#f6f6f6',paddingLeft:"10px", borderBottom: '1px double lavender'}}>
+            
             <Row>
             <Switch>
               <Route

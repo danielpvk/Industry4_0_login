@@ -14,9 +14,7 @@ export default class Sidebar extends React.Component {
 render(){
   return(
     <Container style={{paddingLeft:"0px", paddingRight:"0px"}}>
-    <Row style={{backgroundColor:"#888888", paddingLeft:"10px"}}>
-     <h4>Industry 4.0 <br></br>Workbench</h4> 
-     </Row>
+    
      <Row style={{paddingLeft:"2rem"}}>
             <ul className="nav navbar-nav ">
                   {this.props.isLoggedIn && <li> <NavLink to={"/"} activeStyle={{ color: "#222" }}><FaInfinity/> Home </NavLink> </li> }
