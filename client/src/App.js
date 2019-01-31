@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { Route, Switch} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Processes from "./components/processes";
 import Login from "./components/login";
 import AddProcess from "./components/addProcess";
+import View from "./components/view";
 import "./App.css";
-import axios from 'axios';
-import LoginComp from './components/loginComp';
-import LogoutComp from './components/logoutComp';
-import SignupComp from './components/signupComp';
-import HomeComp from './components/homeComp';
-import NavbarComp from './components/navComp';
+import axios from "axios";
+import LoginComp from "./components/loginComp";
+import LogoutComp from "./components/logoutComp";
+import SignupComp from "./components/signupComp";
+import HomeComp from "./components/homeComp";
+import NavbarComp from "./components/navComp";
 import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col } from 'reactstrap';
 import SidebarComp from './components/sideBar';
@@ -17,8 +18,8 @@ import View2 from './components/view2';
 
 
 class App extends Component {
-//**********login adds */
-  constructor(props){
+  //**********login adds */
+  constructor(props) {
     super(props);
     this.state = {
       inSession: false,
@@ -29,28 +30,28 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.checkInSession()
-  } 
+    this.checkInSession();
+  }
 
   checkInSession = () => {
-    axios.get('http://ec2-3-83-99-249.compute-1.amazonaws.com/api').then((res) => {
-      this.setState({ inSession: res.data.inSession });
-      console.log(this.inSession);
-    }).catch(err => console.log(err));
-  }
+    axios
+      .get("http://ec2-3-83-99-249.compute-1.amazonaws.com/api")
+      .then(res => {
+        this.setState({ inSession: res.data.inSession });
+        console.log(this.inSession);
+      })
+      .catch(err => console.log(err));
+  };
 
   updateStatus = (boolStatus, username) => {
     this.setState({ inSession: boolStatus, loggedUserName: username });
-  }
+  };
 
-  destroyUserSession = (boolStatus) =>{
-    this.setState({ inSession: boolStatus })
-  }
+  destroyUserSession = boolStatus => {
+    this.setState({ inSession: boolStatus });
+  };
 
-//******** login constructors end */
-
-
-
+  //******** login constructors end */
 
   render() {
     let isLoggedIn = this.state.isLoggedIn;
@@ -94,12 +95,6 @@ class App extends Component {
         </Row>
 
       </Container>
-
-
-
-
-
-
     );
   }
 }
