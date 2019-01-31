@@ -91,6 +91,7 @@ class App extends Component {
                 <Route path={"/addProcess"} render={() => <AddProcess />} />
 
                 <Route path={"/"} render={() => <Processes />} />
+                <Route path={"/view/:id"} render={props => <View {...props} />} />
               </Switch>
             ) : (
               <Route path={"/"} exact render={() => <HomeComp />} />

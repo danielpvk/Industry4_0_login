@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route, Link } from "react-router-dom";
 import { Media, Container, Row, Col } from "reactstrap";
-
+import View from "./view";
 import axios from "axios";
 const apiEndpoint =
   "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
@@ -31,6 +31,7 @@ export default class ProcessSidebar extends React.Component {
       return <h2>There are no processes in database</h2>;
     return (
       <div>
+        
         <Row>
           <NavLink
             to="/Processes"
@@ -56,20 +57,12 @@ export default class ProcessSidebar extends React.Component {
               this.state.Process_name.map(p => (
                 <tr key={p.id}>
                   <td>
-                    <button
-                      onClick={() => this.funcionlocal(p.IdDevice1)}
-                      to="/View"
-                      style={{
-                        marginLeft: 0,
-                        marginTop: 10,
-                        marginRight: 10,
-                        width: "100%",
-                        backgroundColor: "383838"
-                      }}
-                      className="btn btn-light btn-sm text-left"
-                    >
-                      {p.Process_name}
-                    </button>
+                  <Link
+                    to={`/view/${p.IdDevice1}`}
+                    className="btn btn-primary btn-sm"
+                  >
+                    {p.Process_name}
+                   </Link>
                   </td>
                 </tr>
               ))}
@@ -122,6 +115,29 @@ return (
           >
             Add Process
           </Link>
+++++++++++++++++++++++++++
+            <button
+                      onClick={() => this.funcionlocal(p.IdDevice1)}
+                      to={`/view/${p.IdDevice1}`}
+                      style={{
+                        marginLeft: 0,
+                        marginTop: 10,
+                        marginRight: 10,
+                        width: "100%",
+                        backgroundColor: "383838"
+                      }}
+                      className="btn btn-light btn-sm text-left"
+                    >
+                      {p.Process_name}
+                    </button>
+
+
+
+
+
+
+
+          ++++++++++++++++++++++++
     </tr>
   </table>
 </div>
