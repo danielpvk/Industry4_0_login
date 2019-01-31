@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import AddProcess from "./addProcess";
 import View from "./view";
 
@@ -19,7 +19,7 @@ class Processes extends Component {
     this.setState({ Process_name });
   };
 
-  handleView = p => {
+  /*handleView = p => {
     //console.log("View: ", p);
     this.setState({
       toView: true,
@@ -28,7 +28,7 @@ class Processes extends Component {
     });
     localStorage.setItem("onFocus", p.IdDevice1);
     localStorage.setItem("ProcessName", p.Process_name);
-  };
+  };*/
 
   async componentDidMount() {
     const { data: Process_name } = await axios.get(apiEndpoint);
@@ -36,18 +36,11 @@ class Processes extends Component {
     this.setState({ Process_name });
   }
   render() {
-    if (this.state.toView === true) {
-      return (
-        <View
-          NumSerie={this.state.onFocus}
-          ProcessName={this.state.ProcessName}
-        />
-      );
-    }
     if (this.state.Process_name.length === 0)
       return <h2>There are no processes in database</h2>;
     return (
       <div>
+        <Route path={"/view/:id"} render={props => <View {...props} />} />
         <p className="text-center">
           Showing {this.state.Process_name.length} processes in the database
         </p>
@@ -79,12 +72,12 @@ class Processes extends Component {
                 </td>
                 <td />
                 <td>
-                  <button
-                    onClick={() => this.handleView(p)}
+                  <Link
+                    to={`/view/${p.IdDevice1}`}
                     className="btn btn-primary btn-sm"
                   >
                     View
-                  </button>
+                  </Link>
                 </td>
                 <td>
                   <button

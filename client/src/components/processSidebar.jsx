@@ -1,89 +1,92 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Media,Container, Row, Col } from 'reactstrap';
-
+import { Media, Container, Row, Col } from "reactstrap";
 
 import axios from "axios";
-const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
+const apiEndpoint =
+  "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
 
 export default class ProcessSidebar extends React.Component {
-
-  
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       isLoggedIn: this.props.isLoggedIn,
-      Process_name: [], 
-      toView: false, 
-      onFocus: "", 
-      ProcessName: "" 
-    }
+      Process_name: [],
+      toView: false,
+      onFocus: "",
+      ProcessName: ""
+    };
   }
   async componentDidMount() {
     const { data: Process_name } = await axios.get(apiEndpoint);
     //console.log({ Process_name });
     this.setState({ Process_name });
   }
-  funcionlocal(a){
+  funcionlocal(a) {
     console.log(a);
-    localStorage.setItem("onFocus",{a});
+    localStorage.setItem("onFocus", { a });
   }
   render() {
-
-    
     if (this.state.Process_name.length === 0)
-    return <h2>There are no processes in database</h2>;
+      return <h2>There are no processes in database</h2>;
     return (
-     <div>
-       <Row>
-            <NavLink 
-                  to="/Processes"
-                  style={{ marginLeft: 0, marginTop: 10, marginRight:50, width:'100%', color: '#FFFfff' , backgroundColor: '383838' }}
-                  className="btn btn-dark btn-lg"
-                  span="glyphicon glyphicon-tasks"
-                
-                  >Processes
-
-            </NavLink>
-       </Row>
-       <Row>
-         <Col md="1">
-         </Col>
-         <Col md="11">
-              <tbody>
-                  {//<Process processName="Proceso numero 1" />
-                  this.state.Process_name.map(p => (
-                    <tr key={p.id}>
-                      <td>
-
-                      <button
-                          onClick={() => this.funcionlocal( p.IdDevice1)}
-                          to="/View"
-                          style={{ marginLeft: 0, marginTop: 10, marginRight:10, width:'100%' , backgroundColor: '383838' }}
-                          className="btn btn-light btn-sm text-left"
-                          >{p.Process_name} 
+      <div>
+        <Row>
+          <NavLink
+            to="/Processes"
+            style={{
+              marginLeft: 0,
+              marginTop: 10,
+              marginRight: 50,
+              width: "100%",
+              color: "#FFFfff",
+              backgroundColor: "383838"
+            }}
+            className="btn btn-dark btn-lg"
+            span="glyphicon glyphicon-tasks"
+          >
+            Processes
+          </NavLink>
+        </Row>
+        <Row>
+          <Col md="1" />
+          <Col md="11">
+            <tbody>
+              {//<Process processName="Proceso numero 1" />
+              this.state.Process_name.map(p => (
+                <tr key={p.id}>
+                  <td>
+                    <button
+                      onClick={() => this.funcionlocal(p.IdDevice1)}
+                      to="/View"
+                      style={{
+                        marginLeft: 0,
+                        marginTop: 10,
+                        marginRight: 10,
+                        width: "100%",
+                        backgroundColor: "383838"
+                      }}
+                      className="btn btn-light btn-sm text-left"
+                    >
+                      {p.Process_name}
                     </button>
-                      
-                      </td>
-                    
-                    </tr>
-                  ))}
-              </tbody>  
-         </Col>
-       </Row>
-       <Row>
-            <NavLink
-                  to="/addProcess"
-                  style={{ marginLeft: 0, marginTop: 10 }}
-                  className="btn btn-dark btn-lg"
-                >
-                  Add Process
-            </NavLink>
-
-       </Row>
-     </div>
-    )
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Col>
+        </Row>
+        <Row>
+          <NavLink
+            to="/addProcess"
+            style={{ marginLeft: 0, marginTop: 10 }}
+            className="btn btn-dark btn-lg"
+          >
+            Add Process
+          </NavLink>
+        </Row>
+      </div>
+    );
   }
 }
 
