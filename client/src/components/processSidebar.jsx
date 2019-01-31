@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Media,Container, Row, Col } from 'reactstrap';
-import { FaIndustry, FaCalendarPlus, FaSpinner } from 'react-icons/fa';
+import { FaIndustry, FaCalendarPlus, FaSpinner, FaAtom, FaCoins } from 'react-icons/fa';
 
 import axios from "axios";
 const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
@@ -42,9 +42,9 @@ export default class ProcessSidebar extends React.Component {
                   to="/Processes"
                   style={{ marginLeft: 0, marginTop: 10, marginRight:50, width:'100%', color: '#FFFfff' , backgroundColor: '383838' }}
                   className="btn btn-dark btn-lg"
-                  span="glyphicon glyphicon-tasks"
+               
                 
-                  ><h6><FaIndustry />     Processes  </h6>
+                  ><h6><FaCoins />     Processes  </h6>
                   
 
             </NavLink>
@@ -62,7 +62,7 @@ export default class ProcessSidebar extends React.Component {
                           to="/view"
                           style={{ marginLeft: 0, marginTop: 10, marginRight:10, width:'100%' , backgroundColor: '383838' }}
                           className="btn btn-light btn-sm text-left"
-                          ><FaSpinner />{p.Process_name} 
+                          ><FaAtom />  {p.Process_name} 
                     </NavLink>
                
                     
