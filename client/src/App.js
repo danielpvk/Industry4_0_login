@@ -57,18 +57,31 @@ class App extends Component {
     return (
       <Container>
         <Row>
-          <Col md="3" style={{ backgroundColor: "#666666", height: "100vh" }}>
+          <Col md="3" style={{backgroundColor: "#888888", paddingLeft:"10px", borderBottom: '1px double lavender'  }}>
+        
+                <h4>Industry 4.0 <br></br>Workbench</h4> 
+            
+          </Col>
+          <Col md="9"style={{backgroundColor: '#ffffff',borderBottom: '1px double lavender'}}>
+           
+                <NavbarComp
+                  isLoggedIn={this.state.inSession}
+                  loggedUserName={this.state.loggedUserName}
+                />
+               
+          </Col>
+        </Row>
+
+        <Row >
+          <Col md="3" style={{backgroundColor: '#666666', height:"100vh" }}>
             <SidebarComp
               isLoggedIn={this.state.inSession}
               loggedUserName={this.state.loggedUserName}
             />
           </Col>
-          <Col md="9" style={{ backgroundColor: "#ffffff" }}>
-            <NavbarComp
-              isLoggedIn={this.state.inSession}
-              loggedUserName={this.state.loggedUserName}
-            />
-
+          <Col md="9"style={{backgroundColor: '#f6f6f6',paddingLeft:"10px", borderBottom: '1px double lavender'}}>
+            
+            <Row>
             <Switch>
               <Route
                 path={"/login/"}
@@ -85,7 +98,10 @@ class App extends Component {
               />
               <Route path={"/signup"} component={SignupComp} />
             </Switch>
-
+            </Row>
+            <Row>
+                 <Col md="1"></Col>
+                <Col md="10">
             {this.state.inSession ? (
               <Switch>
                 <Route path={"/addProcess"} render={() => <AddProcess />} />
@@ -96,6 +112,9 @@ class App extends Component {
             ) : (
               <Route path={"/"} exact render={() => <HomeComp />} />
             )}
+            </Col>
+                <Col md="1"></Col> 
+              </Row>
           </Col>
         </Row>
       </Container>
