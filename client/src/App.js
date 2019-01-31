@@ -57,18 +57,20 @@ class App extends Component {
     return (
       <Container>
         <Row>
-          <Col md="3" style={{ backgroundColor: "#666666", height: "100vh" }}>
+          <Col md="3" style={{backgroundColor: '#666666', height:"100vh" }}>
             <SidebarComp
               isLoggedIn={this.state.inSession}
               loggedUserName={this.state.loggedUserName}
             />
           </Col>
-          <Col md="9" style={{ backgroundColor: "#ffffff" }}>
+          <Col md="9"style={{backgroundColor: '#ffffff'}}>
+            <Row style={{backgroundColor:'#f6f6f6',marginBottom:"2px solid red"}}>
             <NavbarComp
               isLoggedIn={this.state.inSession}
               loggedUserName={this.state.loggedUserName}
             />
-
+            </Row>
+            <Row>
             <Switch>
               <Route
                 path={"/login/"}
@@ -85,7 +87,10 @@ class App extends Component {
               />
               <Route path={"/signup"} component={SignupComp} />
             </Switch>
-
+            </Row>
+            <Row>
+                 <Col md="1"></Col>
+                <Col md="10">
             {this.state.inSession ? (
               <Switch>
                 <Route path={"/addProcess"} render={() => <AddProcess />} />
@@ -96,6 +101,9 @@ class App extends Component {
             ) : (
               <Route path={"/"} exact render={() => <HomeComp />} />
             )}
+            </Col>
+                <Col md="1"></Col> 
+              </Row>
           </Col>
         </Row>
       </Container>

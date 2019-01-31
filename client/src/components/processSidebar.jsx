@@ -3,6 +3,7 @@ import { NavLink, Route, Link } from "react-router-dom";
 import { Media, Container, Row, Col } from "reactstrap";
 import View from "./view";
 import axios from "axios";
+import { FaIndustry, FaCalendarPlus, FaSpinner, FaAtom, FaCoins } from 'react-icons/fa';
 const apiEndpoint =
   "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
 
@@ -46,7 +47,7 @@ export default class ProcessSidebar extends React.Component {
             className="btn btn-dark btn-lg"
             span="glyphicon glyphicon-tasks"
           >
-            Processes
+            <h6><FaCoins />     Processes  </h6>
           </NavLink>
         </Row>
         <Row>
@@ -61,7 +62,7 @@ export default class ProcessSidebar extends React.Component {
                     to={`/view/${p.IdDevice1}`}
                     className="btn btn-primary btn-sm"
                   >
-                    {p.Process_name}
+                    <FaAtom />  {p.Process_name} 
                    </Link>
                   </td>
                 </tr>
@@ -75,7 +76,7 @@ export default class ProcessSidebar extends React.Component {
             style={{ marginLeft: 0, marginTop: 10 }}
             className="btn btn-dark btn-lg"
           >
-            Add Process
+            <h6><FaCalendarPlus/>  Add Process</h6>
           </NavLink>
         </Row>
       </div>
