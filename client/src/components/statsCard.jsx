@@ -9,7 +9,7 @@ export class StatsCard extends Component {
 
   render() {
     return this.state.update ? (
-      <div className="card" style={{ width: "15rem" }}>
+      <div className="card" style={{ width: "12rem" }}>
         <div className="card-body dashboard">
           <h5
             className="card-title"
@@ -20,12 +20,12 @@ export class StatsCard extends Component {
 
           <div className="row">
             <div className="col-sm">
-              <img src={this.props.image} />
+              <img src={this.props.image} alt={"Card"} />
             </div>
             <div className="col-sm">
               <span
                 style={{
-                  fontSize: "3rem",
+                  fontSize: "2rem",
                   textAlign: "right",
                   color: this.props.color
                 }}

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { NavLink, Route, Link } from "react-router-dom";
-import { Media, Container, Row, Col } from "reactstrap";
-import View from "./view";
+import React from "react";
+import { NavLink, Link } from "react-router-dom";
+import { Row, Col } from "reactstrap";
+//import View from "./view";
 import axios from "axios";
-import { FaIndustry, FaCalendarPlus, FaSpinner, FaAtom, FaCoins } from 'react-icons/fa';
+import { FaCalendarPlus, FaAtom, FaCoins } from "react-icons/fa";
 const apiEndpoint =
   "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
 
@@ -32,7 +32,6 @@ export default class ProcessSidebar extends React.Component {
       return <h2>There are no processes in database</h2>;
     return (
       <div>
-        
         <Row>
           <NavLink
             to="/Processes"
@@ -47,37 +46,42 @@ export default class ProcessSidebar extends React.Component {
             className="btn btn-dark btn-lg"
             span="glyphicon glyphicon-tasks"
           >
-            <h6><FaCoins />     Processes  </h6>
+            <h6>
+              <FaCoins /> Processes{" "}
+            </h6>
           </NavLink>
         </Row>
         <Row>
           <Col md="1" />
           <Col md="11">
-            <tbody>
-              {//<Process processName="Proceso numero 1" />
-              this.state.Process_name.map(p => (
-                <tr key={p.id}>
-                  <td>
-                  <Link
-                    to={`/view/${p.IdDevice1}`}
-                    style={{ marginLeft: 0, marginTop: 10, marginRight:10, width:'100%' , backgroundColor: '383838' }}
-                    className="btn btn-light btn-sm text-left"
-                  >
-                    <FaAtom />  {p.Process_name} 
-                   </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {//<Process processName="Proceso numero 1" />
+            this.state.Process_name.map(p => (
+              <Link
+                key={p.id}
+                to={`/view/${p.IdDevice1}`}
+                style={{
+                  marginLeft: 0,
+                  marginTop: 10,
+                  marginRight: 10,
+                  width: "80%",
+                  backgroundColor: "383838"
+                }}
+                className="btn btn-light btn-sm text-left"
+              >
+                <FaAtom /> {p.Process_name}
+              </Link>
+            ))}
           </Col>
         </Row>
         <Row>
           <NavLink
             to="/addProcess"
-            style={{ marginLeft: 0, marginTop: 10 }}
+            style={{ marginLeft: 0, marginTop: 10, width: "82%" }}
             className="btn btn-dark btn-lg"
           >
-            <h6><FaCalendarPlus/>  Add Process</h6>
+            <h6>
+              <FaCalendarPlus /> Add Process
+            </h6>
           </NavLink>
         </Row>
       </div>

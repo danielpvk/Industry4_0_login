@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Processes from "./components/processes";
-import Login from "./components/login";
+//import Login from "./components/login";
 import AddProcess from "./components/addProcess";
 import View from "./components/view";
 import "./App.css";
@@ -37,7 +37,7 @@ class App extends Component {
       .get("http://ec2-3-83-99-249.compute-1.amazonaws.com/api")
       .then(res => {
         this.setState({ inSession: res.data.inSession });
-        console.log(this.inSession);
+        //console.log(this.inSession);
       })
       .catch(err => console.log(err));
   };
@@ -53,68 +53,89 @@ class App extends Component {
   //******** login constructors end */
 
   render() {
-    let isLoggedIn = this.state.isLoggedIn;
+    //let isLoggedIn = this.state.isLoggedIn;
     return (
       <Container>
         <Row>
-          <Col md="3" style={{backgroundColor: "#888888", paddingLeft:"10px", borderBottom: '1px double lavender'  }}>
-        
-                <h4>Industry 4.0 <br></br>Workbench</h4> 
-            
+          <Col
+            md="3"
+            style={{
+              backgroundColor: "#888888",
+              paddingLeft: "10px",
+              borderBottom: "1px double lavender"
+            }}
+          >
+            <h4>
+              Industry 4.0 <br />
+              Workbench
+            </h4>
           </Col>
-          <Col md="9"style={{backgroundColor: '#ffffff',borderBottom: '1px double lavender'}}>
-           
-                <NavbarComp
-                  isLoggedIn={this.state.inSession}
-                  loggedUserName={this.state.loggedUserName}
-                />
-               
+          <Col
+            md="9"
+            style={{
+              backgroundColor: "#ffffff",
+              borderBottom: "1px double lavender"
+            }}
+          >
+            <NavbarComp
+              isLoggedIn={this.state.inSession}
+              loggedUserName={this.state.loggedUserName}
+            />
           </Col>
         </Row>
 
-        <Row >
-          <Col md="3" style={{backgroundColor: '#666666', height:"100vh" }}>
+        <Row>
+          <Col md="3" style={{ backgroundColor: "#666666", height: "100vh" }}>
             <SidebarComp
               isLoggedIn={this.state.inSession}
               loggedUserName={this.state.loggedUserName}
             />
           </Col>
-          <Col md="9"style={{backgroundColor: '#f6f6f6',paddingLeft:"10px", borderBottom: '1px double lavender'}}>
-            
+          <Col
+            md="9"
+            style={{
+              backgroundColor: "#f6f6f6",
+              paddingLeft: "10px",
+              borderBottom: "1px double lavender"
+            }}
+          >
             <Row>
-            <Switch>
-              <Route
-                path={"/login/"}
-                render={() => <LoginComp checkStatus={this.updateStatus} />}
-              />
-              <Route
-                path={"/logout"}
-                render={() => (
-                  <LogoutComp
-                    isLoggedUser={this.state.inSession}
-                    logoutUser={this.destroyUserSession}
-                  />
-                )}
-              />
-              <Route path={"/signup"} component={SignupComp} />
-            </Switch>
+              <Switch>
+                <Route
+                  path={"/login/"}
+                  render={() => <LoginComp checkStatus={this.updateStatus} />}
+                />
+                <Route
+                  path={"/logout"}
+                  render={() => (
+                    <LogoutComp
+                      isLoggedUser={this.state.inSession}
+                      logoutUser={this.destroyUserSession}
+                    />
+                  )}
+                />
+                <Route path={"/signup"} component={SignupComp} />
+              </Switch>
             </Row>
             <Row>
-                 <Col md="1"></Col>
-                <Col md="10">
-            {this.state.inSession ? (
-              <Switch>
-                <Route path={"/addProcess"} render={() => <AddProcess />} />
+              <Col md="1" />
+              <Col md="10">
+                {this.state.inSession ? (
+                  <Switch>
+                    <Route path={"/addProcess"} render={() => <AddProcess />} />
 
-                <Route path={"/"} render={() => <Processes />} />
-                <Route path={"/view/:id"} render={props => <View {...props} />} />
-              </Switch>
-            ) : (
-              <Route path={"/"} exact render={() => <HomeComp />} />
-            )}
-            </Col>
-                <Col md="1"></Col> 
-              </Row>
+                    <Route path={"/"} render={() => <Processes />} />
+                    <Route
+                      path={"/view/:id"}
+                      render={props => <View {...props} />}
+                    />
+                  </Switch>
+                ) : (
+                  <Route path={"/"} exact render={() => <HomeComp />} />
+                )}
+              </Col>
+              <Col md="1" />
+            </Row>
           </Col>
         </Row>
       </Container>
