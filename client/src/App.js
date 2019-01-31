@@ -13,7 +13,7 @@ import NavbarComp from './components/navComp';
 import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col } from 'reactstrap';
 import SidebarComp from './components/sideBar';
-import View from './components/view';
+import View2 from './components/view2';
 
 
 class App extends Component {
@@ -23,7 +23,6 @@ class App extends Component {
     this.state = {
       inSession: false,
       loggedUserName: "",
-      carDeleted: false,
     }
     this.updateStatus = this.updateStatus.bind(this)
     this.destroyUserSession = this.destroyUserSession.bind(this)
@@ -57,44 +56,43 @@ class App extends Component {
     let isLoggedIn = this.state.isLoggedIn;
     return (
       <Container>
-
-      <Row>
-        <Col md="3" style={{backgroundColor: '#666666', height:"100vh"}}>
+        <Row>
+        <Col md="2" style={{backgroundColor: '#666666', height:"100vh" }}>
                <SidebarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName} />
         </Col>
-        <Col md="9"style={{backgroundColor: '#ffffff'}}>
-         
+        <Col md="10"style={{backgroundColor: '#ffffff'}}>
+              <Row style={{backgroundColor:'#f6f6f6',marginBottom:"2px solid red"}}>
                <NavbarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName}/>
-          
+               </Row>
+               <Row>
               <Switch>
               <Route path={'/login/'} render={() => <LoginComp checkStatus={this.updateStatus} />} />
               <Route path={"/logout"} render={() => <LogoutComp isLoggedUser={this.state.inSession} logoutUser={this.destroyUserSession} />} />
               <Route path={"/signup"} component={SignupComp} />
-            
-
               </Switch>
-
-
-              {this.state.inSession ? 
-                
+              </Row>
+              <Row>
+                 <Col md="1"></Col>
+                <Col md="10">
+                {this.state.inSession ? 
                   (
                     <Switch>
                         <Route path={'/addProcess'} render={ () => <AddProcess/>}/>,
                         <Route path={"/"} render={()=> <Processes/>}/>
-                        <Route path={'/view'} render={ () => <View/>}/>
+                        <Route path={"/processes"} render={()=> <Processes/>}/>
+                        <Route path={'/view'} render={ () => <View2/>}/>
                     </Switch>
                   
                   ):
                   
-                  (<Route path={"/"} render={()=> <HomeComp />}/>)   
-                  
-              }
-         
-
-        
+                  ( <Route path={"/"} render={()=> <HomeComp />}/>)   
+                }
+                </Col>
+                <Col md="1"></Col> 
+              </Row>
         </Col>
+        </Row>
 
-      </Row>
       </Container>
 
 

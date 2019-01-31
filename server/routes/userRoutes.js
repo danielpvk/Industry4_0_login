@@ -21,13 +21,13 @@ module.exports = function(app) {
       res.status(200).send({ inSession: false });
     });
     app.get('/api/user/alluserdata', (req, res, next) => {
-      console.log("entre");
+ 
       User.findAll({attributes: ['email', 'username']}).then( data => {
         res.status(200).json({ allUserData: data }) 
       }).catch(err => next(err));
     });
     app.post('/api/login', (req, res) => {
-      console.log("entre");
+     
       var username = req.body.username;
       var password = req.body.password;
       User.findOne({ where: { username: username } }).then(user => {

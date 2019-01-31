@@ -95,7 +95,7 @@ var handleFormSubmit = function(event) {
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
 var handleDeleteBtnClick = function() {
-  console.log("entre al delete");
+  console.log(" al delete");
   var idToDelete = $(this)
     .parent()
     .attr("data-id");

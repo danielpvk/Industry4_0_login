@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Media,Container, Row, Col } from 'reactstrap';
-
+import { FaIndustry, FaCalendarPlus, FaSpinner } from 'react-icons/fa';
 
 import axios from "axios";
 const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
@@ -30,55 +30,52 @@ export default class ProcessSidebar extends React.Component {
     localStorage.setItem("onFocus",{a});
   }
   render() {
-
+    
     
     if (this.state.Process_name.length === 0)
     return <h2>There are no processes in database</h2>;
     return (
      <div>
-       <Row>
+       <Row style={{paddingLeft:"10px"}}>
+         
             <NavLink 
                   to="/Processes"
                   style={{ marginLeft: 0, marginTop: 10, marginRight:50, width:'100%', color: '#FFFfff' , backgroundColor: '383838' }}
                   className="btn btn-dark btn-lg"
                   span="glyphicon glyphicon-tasks"
                 
-                  >Processes
+                  ><h6><FaIndustry />     Processes  </h6>
+                  
 
             </NavLink>
+
        </Row>
-       <Row>
+       <Row style={{paddingLeft:"10px"}}>
          <Col md="1">
          </Col>
          <Col md="11">
-              <tbody>
                   {//<Process processName="Proceso numero 1" />
                   this.state.Process_name.map(p => (
-                    <tr key={p.id}>
-                      <td>
-
-                      <button
+                  //#endregion
+                    <NavLink key={p.id}
                           onClick={() => this.funcionlocal( p.IdDevice1)}
-                          to="/View"
+                          to="/view"
                           style={{ marginLeft: 0, marginTop: 10, marginRight:10, width:'100%' , backgroundColor: '383838' }}
                           className="btn btn-light btn-sm text-left"
-                          >{p.Process_name} 
-                    </button>
-                      
-                      </td>
+                          ><FaSpinner />{p.Process_name} 
+                    </NavLink>
+               
                     
-                    </tr>
                   ))}
-              </tbody>  
          </Col>
        </Row>
-       <Row>
+       <Row style={{paddingLeft:"10px"}}>
             <NavLink
                   to="/addProcess"
                   style={{ marginLeft: 0, marginTop: 10 }}
                   className="btn btn-dark btn-lg"
                 >
-                  Add Process
+                 <h6><FaCalendarPlus/>  Add Process</h6>
             </NavLink>
 
        </Row>

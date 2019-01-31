@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import {Route, Link } from "react-router-dom";
-import AddProcess from "./addProcess";
-import View from "./view";
+import { Link } from "react-router-dom";
 
 
 import axios from "axios";
@@ -36,11 +34,11 @@ class Processes extends Component {
     this.setState({ Process_name });
   }
   render() {
-    if (this.state.toView === true) {
+/*     if (this.state.toView === true) {
       return (
-        <Route path={'/view'} render={ () => <View/>}/>
+
       );
-    }
+    } */
     if (this.state.Process_name.length === 0)
       return <h2>There are no processes in database</h2>;
     return (
@@ -79,6 +77,7 @@ class Processes extends Component {
                   <button
                     onClick={() => this.handleView(p)}
                     className="btn btn-primary btn-sm"
+                    to="/addProcess"
                   >
                     View
                   </button>

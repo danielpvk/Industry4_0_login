@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink, NavItem} from 'react-router-dom';
-import { Media,Container, Row, Col } from 'reactstrap';
+import { Media, Container, Row, Col, Navbar} from 'reactstrap';
 
 
-export default class Navbar extends React.Component {
+export default class NavbarComp extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -12,29 +12,25 @@ export default class Navbar extends React.Component {
   }
 render(){
   return(
-    <nav className="navbar navbar-inverse" >
-     
+        <Navbar style={{alignItems:"right"}}>
               <Col md="3">
-                    <a className="navbar-brand" href="/">Industry 4.0 Workbench</a>
-                    
               </Col>
-              <Col md="5 //#endregion">
-              </Col>
-              <Col md="1">
+              <Col md="3">
                  <NavLink to={"/"} activeStyle={{ color: "#222" }}> Home </NavLink> 
               </Col>
-              <Col md="2">
+              <Col md="3">
             {/*   <img src={'/assets/icons/login.jpg'} imageWrapper={{height: 20, width: 20}}/> */}
                 {!this.props.isLoggedIn &&  <NavLink to={"/login"} activeStyle={{ color: "#222" }}> Login </NavLink> }
               </Col>
-              <Col md="1">
+              <Col md="3">
 
                 {!this.props.isLoggedIn && <NavLink to={"/signup"} activeStyle={{ color: "#222" }}> Signup </NavLink> }
                 {this.props.isLoggedIn &&  <NavLink to={"/logout"} activeStyle={{ color: "#222" }}> Logout </NavLink> }
                 {this.props.isLoggedIn &&  <a>USER {this.props.loggedUserName} </a>  }
               </Col>
+      </Navbar>
  
-    </nav>
+   
 )}
 
 

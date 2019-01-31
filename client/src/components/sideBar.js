@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink, NavItem} from 'react-router-dom';
 import ProcessSidebarComp from './processSidebar';
 
+import { Media,Container, Row, Col } from 'reactstrap';
+
 
 export default class Sidebar extends React.Component {
   constructor(props){
@@ -12,11 +14,34 @@ export default class Sidebar extends React.Component {
   }
 render(){
   return(
-    <nav className="navbar navbar-inverse" >
-        <div className="container-fluid">
+    <Container style={{paddingLeft:"0px", paddingRight:"0px"}}>
+      <Row style={{backgroundColor:"#888888", paddingLeft:"10px"}}>
+       <h4>Industry 4.0 Workbench.</h4> 
+       </Row>
+       <Row style={{paddingLeft:"10px"}}>
+        <ul className="nav navbar-nav ">
+                <li> <NavLink to={"/"} activeStyle={{ color: "#222" }}> Home </NavLink> </li>
+                {this.props.isLoggedIn && <li> <ProcessSidebarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName}/> </li> }
+                              
+                {this.props.isLoggedIn && <li> <NavLink to={"/logout"} activeStyle={{ color: "#ccc" }}> Logout </NavLink> </li> }
+                {!this.props.isLoggedIn && <li> <NavLink to={"/login"} activeStyle={{ color: "#ccc" }}> Login </NavLink> </li>}
+                {!this.props.isLoggedIn && <li> <NavLink to={"/signup"} activeStyle={{ color: "#ccc" }}> Signup </NavLink> </li>
+                }
+        </ul>
+        </Row>   
+    </Container>        
+)}
+
+
+}
+ 
+/* 
+<nav className="navbar navbar-inverse" >
+        <div className="container-fluid"> <p class="bg-primary">Industry 4.0 Workbench.</p>
+        <a className="navbar-brand" href="/">Industry 4.0 Workbench</a>
             <ul className="nav navbar-nav ">
                   <li> <NavLink to={"/"} activeStyle={{ color: "#222" }}> Home </NavLink> </li>
-  {this.props.isLoggedIn && <li> <ProcessSidebarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName}/> </li> }
+                  {this.props.isLoggedIn && <li> <ProcessSidebarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName}/> </li> }
                                 
                   {this.props.isLoggedIn && <li> <NavLink to={"/logout"} activeStyle={{ color: "#ccc" }}> Logout </NavLink> </li> }
                   {!this.props.isLoggedIn && <li> <NavLink to={"/login"} activeStyle={{ color: "#ccc" }}> Login </NavLink> </li>}
@@ -27,12 +52,10 @@ render(){
          
         </div>
     </nav>
-)}
 
 
-}
- 
-/* 
+
+
 render(){
   return (
     <div className='col-sm-10 col-sm-offset-1'>
