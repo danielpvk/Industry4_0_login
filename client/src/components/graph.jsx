@@ -5,10 +5,10 @@ class Graph extends Component {
   state = { data: [], dataLoadingStatus: "false" };
 
   formatDate(d) {
-    console.log(d);
+    //console.log(d);
     var newStr = d.substring(0, d.length - 1);
     const dateObject = new Date(newStr);
-    console.log(dateObject);
+    //console.log(dateObject);
     return (
       dateObject.toLocaleDateString("es-MX") +
       " " +

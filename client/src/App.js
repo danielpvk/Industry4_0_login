@@ -88,12 +88,13 @@ class App extends Component {
 
             {this.state.inSession ? (
               <Switch>
-                <Route path={"/addProcess"} render={() => <AddProcess />} />,
+                <Route path={"/addProcess"} render={() => <AddProcess />} />
+
                 <Route path={"/"} render={() => <Processes />} />
-                <Route path={"/view"} render={() => <View />} />
+                <Route path={"/view/:id"} render={props => <View {...props} />} />
               </Switch>
             ) : (
-              <Route path={"/"} render={() => <HomeComp />} />
+              <Route path={"/"} exact render={() => <HomeComp />} />
             )}
           </Col>
         </Row>

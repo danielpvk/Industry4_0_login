@@ -1,20 +1,19 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import StatsCard from "./statsCard";
 import Graph from "./graph";
 import axios from "axios";
-const apiEndpoint = "http://localhost/device/numserie/";
+const apiEndpoint =
+  "http://ec2-3-83-99-249.compute-1.amazonaws.com/device/numserie/";
 
 class View extends Component {
   state = { data: [], LectureP1: 0, LectureP2: 0, size: 0 };
 
   async componentDidMount() {
-    const nSerie=localStorage.getItem("onFocus");
-  //  const result = await axios.get(apiEndpoint + this.props.NumSerie);
-  console.log("view mounted");
-  console.log("num serie"+nSerie);
-  const result = await axios.get(apiEndpoint + nSerie);
-    console.log(result.data.length);
+    const nSerie = localStorage.getItem("onFocus");
+    const result = await axios.get(apiEndpoint + this.props.match.params.id);
+    //console.log(result.data.length);
+    //console.log("Match", this.props.match.params.id);
 
     this.setState({
       data: result.data,
@@ -51,7 +50,7 @@ class View extends Component {
             sensors information for the process.
           </p>
 
-          <h2>Sensor Serial Number: {this.props.NumSerie}</h2>
+          <h2>Sensor Serial Number: {this.props.match.params.id}</h2>
         </div>
 
         <div className="container">
@@ -60,7 +59,7 @@ class View extends Component {
               <StatsCard
                 value={this.state.LectureP1}
                 text={"Temp (ºC)"}
-                image={"./assets/icons/temp.jpg"}
+                image={"../../assets/icons/temp.jpg"}
                 color={"blue"}
               />
             </div>
@@ -68,7 +67,7 @@ class View extends Component {
               <StatsCard
                 value={this.state.LectureP2}
                 text={"Humidity (%)"}
-                image={"./assets/icons/dew.jpg"}
+                image={"../../assets/icons/dew.jpg"}
                 color={"red"}
               />
             </div>
@@ -76,7 +75,7 @@ class View extends Component {
               <StatsCard
                 value={this.state.size}
                 text={"DataPoints"}
-                image={"./assets/icons/points.jpg"}
+                image={"../../assets/icons/points.jpg"}
               />
             </div>
           </div>
@@ -93,12 +92,13 @@ class View extends Component {
                 <th>Humidity (Relative%)</th>
 
                 <th>
-                  <button
+                  <Link
+                    to={"/"}
                     style={{ marginLeft: 0, marginTop: 10 }}
                     className="btn btn-success btn-sm"
                   >
                     Return to List
-                  </button>
+                  </Link>
                 </th>
               </tr>
             </thead>
