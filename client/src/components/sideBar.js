@@ -23,9 +23,7 @@ render(){
                                 
                   {this.props.isLoggedIn && <li> <NavLink to={"/logout"} activeStyle={{ color: "#ccc" }}> <FaSignOutAlt/> Logout </NavLink> </li> }
                   {!this.props.isLoggedIn && <li> <NavLink to={"/login"} activeStyle={{ color: "#ccc" }}> <FaSignInAlt/> Login </NavLink> </li>}
-                  
-                  
-                  
+                    
             </ul>
             </Row>   
     </Container>    
@@ -34,20 +32,3 @@ render(){
 
 }
  
-
-{/* <nav className="navbar navbar-inverse" >
-<div className="container-fluid">
-    <ul className="nav navbar-nav ">
-          {this.props.isLoggedIn && <li> <NavLink to={"/"} activeStyle={{ color: "#222" }}><FaInfinity/> Home </NavLink> </li> }
-         
-          {this.props.isLoggedIn && <li> <ProcessSidebarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName}/> </li> }
-                        
-          {this.props.isLoggedIn && <li> <NavLink to={"/logout"} activeStyle={{ color: "#ccc" }}> <FaSignOutAlt/> Logout </NavLink> </li> }
-          {!this.props.isLoggedIn && <li> <NavLink to={"/login"} activeStyle={{ color: "#ccc" }}> <FaSignInAlt/> Login </NavLink> </li>}
-          
-          
-          
-    </ul>
- 
-</div>
-</nav> */}

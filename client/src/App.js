@@ -73,7 +73,7 @@ class App extends Component {
         </Row>
 
         <Row >
-          <Col md="3" style={{backgroundColor: '#666666', height:"100vh" }}>
+          <Col md="3" style={{backgroundColor: '#77aabb', height:"100vh",backgroundImage: `url(${"../../assets/images/industry-2.jpg"})`,backgroundRepeat: false }}>
             <SidebarComp
               isLoggedIn={this.state.inSession}
               loggedUserName={this.state.loggedUserName}
