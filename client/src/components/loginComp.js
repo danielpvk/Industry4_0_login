@@ -11,6 +11,7 @@ export default class LoginComp extends React.Component{
       userLoggedIn: false,
       loggedUserName: "",
       loggedUserEmail: "",
+      loggedUserPassword: "",
       loginError: "",
       usernameBlank: true,
       passwordBlank: true,
@@ -43,8 +44,8 @@ export default class LoginComp extends React.Component{
           
           this.setState({ loginError: res.data.msg})
         }
-        this.props.checkStatus(res.data.inSession, res.data.loggedUserName, res.data.loggedUserEmail)
-        this.setState({ userLoggedIn: res.data.inSession, loggedUserName: res.data.loggedUserName, loggedUserEmail: res.data.loggedUserEmail})
+        this.props.checkStatus(res.data.inSession, res.data.loggedUserName, res.data.loggedUserEmail, res.data.loggedUserPassword)
+        this.setState({ userLoggedIn: res.data.inSession, loggedUserName: res.data.loggedUserName, loggedUserEmail: res.data.loggedUserEmail, loggedUserPassword: res.data.loggedUserPassword})
       }).catch(err => console.log(err))
     } else{
       this.setState({ usernameInvalid: true, passwordInValid: true})

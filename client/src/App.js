@@ -24,6 +24,7 @@ class App extends Component {
       inSession: false,
       loggedUserName: "",
       loggedUserEmail: "",
+      loggedUserPassword: "",
       carDeleted: false
      
     };
@@ -45,8 +46,8 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  updateStatus = (boolStatus, username, useremail) => {
-    this.setState({ inSession: boolStatus, loggedUserName: username, loggedUserEmail: useremail });
+  updateStatus = (boolStatus, username, useremail, userpassword) => {
+    this.setState({ inSession: boolStatus, loggedUserName: username, loggedUserEmail: useremail, loggedUserPassword: userpassword });
   };
 
   destroyUserSession = boolStatus => {
@@ -128,7 +129,8 @@ class App extends Component {
                     <Route path={"/addProcess"} render={() => <AddProcess />} />
                     <Route path={"/user"} render={()=> <ViewUser 
                                                             loggedUserName={this.state.loggedUserName} 
-                                                            loggedUserEmail={this.state.loggedUserEmail}/>}/>
+                                                            loggedUserEmail={this.state.loggedUserEmail}
+                                                            loggedUserPassword={this.state.loggedUserPassword}/>}/>
                     <Route path={"/"} render={() => <Processes />} />
                     <Route
                       path={"/view/:id"}

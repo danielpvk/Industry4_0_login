@@ -27,17 +27,17 @@ module.exports = function(app) {
       }).catch(err => next(err));
     });
     app.post('/api/login', (req, res) => {
-      console.log("entre");
       var username = req.body.username;
       var password = req.body.password;
       User.findOne({ where: { username: username } }).then(user => {
+        console.log(user);
         if (!user) {
           res.status(200).send({ incorrectUsername: true, inSession: false, msg: "Incorrect Username" })
         } else if (!user.validPassword(password)) {
           res.status(200).send({ incorrectPassword: true, inSession: false, msg: "Incorrect Password" })
         } else {
           res.status(200).send({
-            inSession: true, msg: "Logged in!", loggedUserName: user.username
+            inSession: true, msg: "Logged in!", loggedUserName: user.username, loggedUserEmail: user.email, loggedUserPassword: user.password
           })
         }
       })

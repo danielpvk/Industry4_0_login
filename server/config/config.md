@@ -1,15 +1,15 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
+    "username": "bootcamp",
+    "password": "bootcamp",
     "database": "Industry4_0",
     "host": "localhost",
     "dialect": "mysql",
     "timezone": "-06:00"
   },
   "test": {
-    "username": "root",
-    "password": "root",
+    "username": "bootcamp",
+    "password": "bootcamp",
     "database": "Industry4_0",
     "host": "localhost",
     "dialect": "mysql",
