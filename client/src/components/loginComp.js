@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com";
-
+//const apiEndpoint = "http://ec2-3-83-99-249.compute-1.amazonaws.com";
+const apiEndpoint = "http://localhost:80"
 export default class LoginComp extends React.Component{
   constructor(props){
     super(props);
@@ -10,6 +10,7 @@ export default class LoginComp extends React.Component{
       password: "",
       userLoggedIn: false,
       loggedUserName: "",
+      loggedUserEmail: "",
       loginError: "",
       usernameBlank: true,
       passwordBlank: true,
@@ -37,11 +38,13 @@ export default class LoginComp extends React.Component{
       axios.post(apiEndpoint+'/api/login', {
         username: this.state.username, password: this.state.password
       }).then(res => {
+        console.log(res.data);
         if (res.data.incorrectUsername || res.data.incorrectPassword ){
+          
           this.setState({ loginError: res.data.msg})
         }
-        this.props.checkStatus(res.data.inSession, res.data.loggedUserName)
-        this.setState({ userLoggedIn: res.data.inSession, loggedUserName: res.data.loggedUserName})
+        this.props.checkStatus(res.data.inSession, res.data.loggedUserName, res.data.loggedUserEmail)
+        this.setState({ userLoggedIn: res.data.inSession, loggedUserName: res.data.loggedUserName, loggedUserEmail: res.data.loggedUserEmail})
       }).catch(err => console.log(err))
     } else{
       this.setState({ usernameInvalid: true, passwordInValid: true})

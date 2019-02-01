@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { Row, Col } from "reactstrap";
 //import View from "./view";
 import axios from "axios";
-import { FaCalendarPlus, FaAtom, FaCoins } from "react-icons/fa";
+import { FaCalendarPlus, FaAtom, FaCoins,FaUser } from "react-icons/fa";
 const apiEndpoint =
   "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
 
@@ -43,8 +43,7 @@ export default class ProcessSidebar extends React.Component {
               color: "#FFFfff",
               backgroundColor: "383838"
             }}
-            className="btn btn-dark btn-lg"
-            span="glyphicon glyphicon-tasks"
+            className="btn btn-dark btn-lg text-left"
           >
             <h6>
               <FaCoins /> Processes{" "}
@@ -77,12 +76,29 @@ export default class ProcessSidebar extends React.Component {
           <NavLink
             to="/addProcess"
             style={{ marginLeft: 0, marginTop: 10, width: "82%" }}
-            className="btn btn-dark btn-lg"
+            className="btn btn-dark btn-lg text-left"
           >
             <h6>
               <FaCalendarPlus /> Add Process
             </h6>
           </NavLink>
+        </Row>
+        <Row>
+              <NavLink
+                  to="/User"
+                  style={{
+                    marginLeft: 0,
+                    marginTop: 10,
+                    marginRight: 50,
+                    width: "100%",
+                    color: "#FFFfff",
+                  }}
+                  className="btn btn-dark btn-lg text-left"
+                >
+                <h6>
+                  <FaUser /> User{"    "}
+                </h6>
+              </NavLink>
         </Row>
       </div>
     );

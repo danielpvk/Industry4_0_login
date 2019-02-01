@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import ProcessSidebarComp from "./processSidebar";
 import { Container, Row } from "reactstrap";
-import { FaSignOutAlt, FaInfinity, FaSignInAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaInfinity, FaSignInAlt} from "react-icons/fa";
 
 export default class Sidebar extends React.Component {
   constructor(props) {
@@ -34,22 +34,25 @@ export default class Sidebar extends React.Component {
                 />{" "}
               </li>
             )}
-
             {this.props.isLoggedIn && (
               <li>
                 {" "}
-                <NavLink to={"/logout"} activeStyle={{ color: "#ccc" }}>
+                <NavLink to={"/logout"} 
+                          activeStyle={{ color: "#222" }} 
+                          className="text-white">  
                   {" "}
-                  <FaSignOutAlt /> Logout{" "}
+                  <h5><strong><FaSignOutAlt /> Logout{" "}</strong></h5>
                 </NavLink>{" "}
               </li>
             )}
             {!this.props.isLoggedIn && (
               <li>
                 {" "}
-                <NavLink to={"/login"} activeStyle={{ color: "#ccc" }}>
+                <NavLink to={"/login"} 
+                        activeStyle={{ color: "#222" }}  
+                        >
                   {" "}
-                  <FaSignInAlt /> Login{" "}
+                  <h5><strong><FaSignInAlt /> Login{" "}</strong></h5>
                 </NavLink>{" "}
               </li>
             )}
@@ -59,7 +62,3 @@ export default class Sidebar extends React.Component {
     );
   }
 }
-<<<<<<< HEAD
- 
-=======
->>>>>>> 2b81c59fe10236722d81dc15c8bb5cb3091a7321

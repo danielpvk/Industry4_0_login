@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import AddProcess from "./addProcess";
 import View from "./view";
-
 import axios from "axios";
 const apiEndpoint =
   "http://ec2-3-83-99-249.compute-1.amazonaws.com/api/process/";
@@ -19,16 +18,7 @@ class Processes extends Component {
     this.setState({ Process_name });
   };
 
-  /*handleView = p => {
-    //console.log("View: ", p);
-    this.setState({
-      toView: true,
-      onFocus: p.IdDevice1,
-      ProcessName: p.Process_name
-    });
-    localStorage.setItem("onFocus", p.IdDevice1);
-    localStorage.setItem("ProcessName", p.Process_name);
-  };*/
+
 
   async componentDidMount() {
     const { data: Process_name } = await axios.get(apiEndpoint);

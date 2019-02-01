@@ -14,6 +14,7 @@ import NavbarComp from "./components/navComp";
 import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col } from "reactstrap";
 import SidebarComp from "./components/sideBar";
+import ViewUser from "./components/viewUser";
 
 class App extends Component {
   //**********login adds */
@@ -22,7 +23,9 @@ class App extends Component {
     this.state = {
       inSession: false,
       loggedUserName: "",
+      loggedUserEmail: "",
       carDeleted: false
+     
     };
     this.updateStatus = this.updateStatus.bind(this);
     this.destroyUserSession = this.destroyUserSession.bind(this);
@@ -42,8 +45,8 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  updateStatus = (boolStatus, username) => {
-    this.setState({ inSession: boolStatus, loggedUserName: username });
+  updateStatus = (boolStatus, username, useremail) => {
+    this.setState({ inSession: boolStatus, loggedUserName: username, loggedUserEmail: useremail });
   };
 
   destroyUserSession = boolStatus => {
@@ -123,7 +126,9 @@ class App extends Component {
                 {this.state.inSession ? (
                   <Switch>
                     <Route path={"/addProcess"} render={() => <AddProcess />} />
-
+                    <Route path={"/user"} render={()=> <ViewUser 
+                                                            loggedUserName={this.state.loggedUserName} 
+                                                            loggedUserEmail={this.state.loggedUserEmail}/>}/>
                     <Route path={"/"} render={() => <Processes />} />
                     <Route
                       path={"/view/:id"}
