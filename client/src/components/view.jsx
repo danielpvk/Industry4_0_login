@@ -10,17 +10,18 @@ class View extends Component {
   state = { data: [], LectureP1: 0, LectureP2: 0, size: 0 };
 
   async componentDidMount() {
-    const nSerie = localStorage.getItem("onFocus");
     const result = await axios.get(apiEndpoint + this.props.match.params.id);
-    //console.log(result.data.length);
+    //console.log("lenght", result.data.length);
     //console.log("Match", this.props.match.params.id);
-
-    this.setState({
-      data: result.data,
-      LectureP1: result.data[result.data.length - 1].LectureP1,
-      LectureP2: result.data[result.data.length - 1].LectureP2,
-      size: result.data.length
-    });
+    //console.log("Result data", result.data);
+    if (result.data.length > 0) {
+      this.setState({
+        data: result.data,
+        LectureP1: result.data[result.data.length - 1].LectureP1,
+        LectureP2: result.data[result.data.length - 1].LectureP2,
+        size: result.data.length
+      });
+    }
   }
 
   formatDate(d) {
@@ -36,17 +37,8 @@ class View extends Component {
     return (
       <div>
         <div className="jumbotron">
-          <h1 className="display-4" style={{ display: "inline" }}>
-            Process Name:
-          </h1>
-          <h1
-            className="display-6"
-            style={{ color: "red", display: "inline", paddingLeft: "20" }}
-          >
-            {this.props.ProcessName}
-          </h1>
           <p className="lead">
-            This is the Industry 4.0 Process, this dashboard shows all the
+            This is the Industry 4.0 Process View, this dashboard shows all the
             sensors information for the process.
           </p>
 
@@ -115,7 +107,11 @@ class View extends Component {
                       </span>
                     </td>
                     <td>
-                      <span style={{ fontStyle: "Italic" }}>{p.LectureP1}</span>
+                      <span
+                        style={{ fontStyle: "Italic", textAlign: "center" }}
+                      >
+                        {p.LectureP1}
+                      </span>
                     </td>
                     <td>
                       <span style={{ fontStyle: "Italic" }}>{p.LectureP2}</span>

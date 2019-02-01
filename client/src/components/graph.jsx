@@ -54,7 +54,7 @@ class Graph extends Component {
               backgroundColor: "#e9ecef"
             }}
             rootProps={{ "data-testid": "1" }}
-            width="99%"
+            width="98%"
             height="700px"
             legendToggle
           />

@@ -1,34 +1,65 @@
-import React from 'react';
-import { NavLink, NavItem} from 'react-router-dom';
-import ProcessSidebarComp from './processSidebar';
-import { Media,Container, Row, Col } from 'reactstrap';
-import { FaUser, FaSignOutAlt, FaInfinity, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import ProcessSidebarComp from "./processSidebar";
+import { Container, Row } from "reactstrap";
+import { FaSignOutAlt, FaInfinity, FaSignInAlt } from "react-icons/fa";
 
 export default class Sidebar extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: this.props.isLoggedIn,
-    }
+      isLoggedIn: this.props.isLoggedIn
+    };
   }
-render(){
-  return(
-    <Container style={{paddingLeft:"0px", paddingRight:"0px"}}>
-    
-     <Row style={{paddingLeft:"2rem"}}>
-            <ul className="nav navbar-nav ">
-                  {this.props.isLoggedIn && <li> <NavLink to={"/"} activeStyle={{ color: "#222" }}><FaInfinity/> Home </NavLink> </li> }
-                 
-                  {this.props.isLoggedIn && <li> <ProcessSidebarComp isLoggedIn={this.state.inSession} loggedUserName={this.state.loggedUserName}/> </li> }
-                                
-                  {this.props.isLoggedIn && <li> <NavLink to={"/logout"} activeStyle={{ color: "#ccc" }}> <FaSignOutAlt/> Logout </NavLink> </li> }
-                  {!this.props.isLoggedIn && <li> <NavLink to={"/login"} activeStyle={{ color: "#ccc" }}> <FaSignInAlt/> Login </NavLink> </li>}
-                    
-            </ul>
-            </Row>   
-    </Container>    
-)}
+  render() {
+    return (
+      <Container style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+        <Row style={{ paddingLeft: "2rem" }}>
+          <ul className="nav navbar-nav ">
+            {this.props.isLoggedIn && (
+              <li>
+                {" "}
+                <NavLink to={"/"} activeStyle={{ color: "#222" }}>
+                  <FaInfinity /> Home{" "}
+                </NavLink>{" "}
+              </li>
+            )}
 
+            {this.props.isLoggedIn && (
+              <li>
+                {" "}
+                <ProcessSidebarComp
+                  isLoggedIn={this.state.inSession}
+                  loggedUserName={this.state.loggedUserName}
+                />{" "}
+              </li>
+            )}
 
+            {this.props.isLoggedIn && (
+              <li>
+                {" "}
+                <NavLink to={"/logout"} activeStyle={{ color: "#ccc" }}>
+                  {" "}
+                  <FaSignOutAlt /> Logout{" "}
+                </NavLink>{" "}
+              </li>
+            )}
+            {!this.props.isLoggedIn && (
+              <li>
+                {" "}
+                <NavLink to={"/login"} activeStyle={{ color: "#ccc" }}>
+                  {" "}
+                  <FaSignInAlt /> Login{" "}
+                </NavLink>{" "}
+              </li>
+            )}
+          </ul>
+        </Row>
+      </Container>
+    );
+  }
 }
+<<<<<<< HEAD
  
+=======
+>>>>>>> 2b81c59fe10236722d81dc15c8bb5cb3091a7321
